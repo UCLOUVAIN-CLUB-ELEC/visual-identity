@@ -1,0 +1,16 @@
+% https://github.com/overleaf/overleaf/issues/475
+
+%% WARNING: use XeLaTeX (instead of pdfLaTeX) for compilation %%
+% Menu -> Compiler -> XeLaTeX
+\documentclass[aspectratio=169]{beamer}
+
+\input{preamble}
+
+\begin{document}
+    \begin{visual}[logo-full]
+        \begin{tikzpicture}
+            \draw (0,0) -- (3,3) node[midway] {\includegraphics[width=.5\textwidth]{images/UCLouvain_Logo_Pos_PMS_prof.pdf}};
+            \node at (1.5,-1) {Here comes some text};
+        \end{tikzpicture}
+    \end{visual}
+\end{document}

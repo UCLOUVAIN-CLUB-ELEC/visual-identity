@@ -1,0 +1,59 @@
+\usepackage{ifxetex,ifluatex}
+
+\newif\ifxetexorluatex
+\ifxetex
+  \xetexorluatextrue
+\else
+  \ifluatex
+    \xetexorluatextrue
+  \else
+    \xetexorluatexfalse
+  \fi
+\fi
+
+%gets rid of bottom navigation bars
+\setbeamertemplate{footline}[frame number]{}
+
+%gets rid of bottom navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+%gets rid of footer
+%will override 'frame number' instruction above
+%comment out to revert to previous/default definitions
+\setbeamertemplate{footline}{}
+
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{standalone}
+\usepackage{float}
+
+% \usetikzlibrary{external}
+% \tikzexternalize[prefix=output/]
+
+\usepackage{environ}
+
+%\setmainfont[Ligatures=TeX]{BwModelica-ExtraBold.otf}
+\ifxetexorluatex
+    % If using xelatex or lualatex:
+    \usepackage{fontspec}
+    \setmainfont{BwModelica}[
+    Extension = .otf ,
+    UprightFont = *-Bold ,
+    ItalicFont = *-BoldItalic ,
+    BoldFont = BwModelica-ExtraBold ,
+    BoldItalicFont = BwModelica-ExtraBoldItalic,
+    ]
+\else
+    % If using pdflatex:
+    \PackageError{UCLouvainFont}{Don't use pdfLaTeX}{Please switch your compiler to either XeTeX or LuaTeX.}
+\fi
+
+\NewEnviron{visual}[1][unnamed]
+    {%
+    \begin{frame}
+        \frametitle{#1}
+        %\tikzsetnextfilename{#1}
+        \centering
+        \fbox{\BODY}
+    \end{frame}
+    }

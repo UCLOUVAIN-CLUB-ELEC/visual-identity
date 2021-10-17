@@ -27,8 +27,8 @@
 \usepackage{standalone}
 \usepackage{float}
 
-% \usetikzlibrary{external}
-% \tikzexternalize[prefix=output/]
+\usetikzlibrary{external}
+\tikzexternalize[prefix=output/]
 
 \usepackage{environ}
 
@@ -52,7 +52,7 @@
     {%
     \begin{frame}
         \frametitle{#1}
-        %\tikzsetnextfilename{#1}
+        \tikzsetnextfilename{#1}
         \centering
         \fbox{\BODY}
     \end{frame}

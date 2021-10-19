@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="output/logo-full-pos" />
+  <img src="images/logo.png" />
 </p>
 
 # visual-identity

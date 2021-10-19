@@ -7,10 +7,17 @@
 \input{preamble}
 
 \begin{document}
-    \begin{visual}[logo-full]
+
+    \begin{visual}[logo-full-pos]
         \begin{tikzpicture}
-            \draw (0,0) -- (3,3) node[midway] {\includegraphics[width=.5\textwidth]{images/UCLouvain_Logo_Pos_PMS_prof.pdf}};
-            \node at (1.5,-1) {Here comes some text};
+            \node (logo) {\includegraphics{images/UCLouvain_Logo_Cropped.pdf}};
+            \node[anchor=north west] (club) at ([xshift=.1cm,yshift=-.1cm]logo.north east) {\fontsize{40}{48}\selectfont \color{blue-dark} \textbf{CLUB}};
+            \node[below of=club, node distance=1.6cm] (elec) {\fontsize{40}{48}\selectfont \color{blue-medium} \textbf{ELEC}};
+
+            \path (elec) -- (club) node[midway] (mid) {};
+
+            \draw[very thick,blue-light] (elec.west |- mid) -- (elec.east |- mid);
+
         \end{tikzpicture}
     \end{visual}
 \end{document}

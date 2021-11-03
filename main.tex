@@ -8,26 +8,82 @@
 
 \begin{document}
 
-    \begin{visual}[Welcome]
-        \begin{tcolorbox}
+\begin{visual}[Welcome]
+    \begin{tcolorbox}
         Feel free to modify this document here:\\ \url{https://www.overleaf.com/8452719643bbydhxpthbxr}.
-        
+
         Once you made some changes, please contact us (via \href{https://github.com/UCLOUVAIN-CLUB-ELEC/visual-identity/issues}{\textbf{GitHub}} issues or email) so that we merge your contribution.
-        
+
         Alternatively, you can use your own \href{https://github.com/UCLOUVAIN-CLUB-ELEC/visual-identity}{\textbf{fork}}.
-        \end{tcolorbox}
-    \end{visual}
+    \end{tcolorbox}
+\end{visual}
 
-    \begin{visual}[logo-full-pos]
-        \begin{tikzpicture}
-            \node (logo) {\includegraphics{images/UCLouvain_Logo_Cropped.pdf}};
-            \node[anchor=north west] (club) at ([xshift=.1cm,yshift=-.1cm]logo.north east) {\fontsize{40}{48}\selectfont \color{blue-dark} \textbf{CLUB}};
-            \node[below of=club, node distance=1.6cm] (elec) {\fontsize{40}{48}\selectfont \color{blue-medium} \textbf{ELEC}};
+\begin{visual}[logo-full-pos]
+    \begin{tikzpicture}
+        \node (logo) {\includegraphics{images/UCLouvain_Logo_Cropped.pdf}};
+        \node[anchor=north west] (club) at ([xshift=.1cm,yshift=-.1cm]logo.north east) {\fontsize{40}{48}\selectfont \color{blue-dark} \textbf{CLUB}};
+        \node[below of=club, node distance=1.6cm] (elec) {\fontsize{40}{48}\selectfont \color{blue-medium} \textbf{ELEC}};
 
-            \path (elec) -- (club) node[midway] (mid) {};
+        \path (elec) -- (club) node[midway] (mid) {};
 
-            \draw[very thick,blue-light] (elec.west |- mid) -- (elec.east |- mid);
+        \draw[very thick,blue-light] (elec.west |- mid) -- (elec.east |- mid);
 
-        \end{tikzpicture}
-    \end{visual}
+    \end{tikzpicture}
+\end{visual}
+\begin{visual}[icon]
+    \begin{tikzpicture}
+        %
+        %   EXXF
+        %  X   G
+        %  D
+        %  X   A
+        %   CXXB
+        %
+        \coordinate (A) at (0,0);
+        \pgfmathsetmacro{\dyAB}{.7}
+        \pgfmathsetmacro{\dxBC}{1.5}
+        \pgfmathsetmacro{\dxCD}{2}
+        \pgfmathsetmacro{\dyCD}{2}
+        \pgfmathsetmacro{\linewidth}{2} % in mm
+        \pgfmathsetmacro{\ELECwidth}{.9}
+        \pgfmathsetmacro{\ELEChalfheight}{1}
+        \pgfmathsetmacro{\cablelength}{1}
+            
+        % CLUB
+        \path (A) 
+            -- ++(0,-\dyAB) coordinate (B)
+            -- ++(-\dxBC,0) coordinate (C)
+            -- ++(-\dxCD,+\dyCD) coordinate (D)
+            -- ++(+\dxCD,+\dyCD) coordinate (E)
+            -- ++(+\dxBC,0) coordinate (F)
+            -- ++(0,-\dyAB) coordinate (G);
+        
+        \draw[line width={\linewidth mm},blue-dark] (A) 
+            -- (B)
+            -- (C)
+            to[out=-180,in=-90] (D)
+            to[out=90,in=-180] (E)
+            -- (F)
+            -- (G);
+
+        % ELEC
+        \path (A) -- (G) node[midway] (ELECmid) {}; 
+        \draw[line width={\linewidth mm},blue-medium] ([yshift=-1mm]ELECmid.center) 
+            -- ++(0,+\ELEChalfheight)
+            -- ++(\ELECwidth,0);
+        \draw[line width={\linewidth mm},blue-medium] (ELECmid.center) 
+            -- ++(0,-\ELEChalfheight)
+            -- ++(\ELECwidth,0);
+        \draw[line width={\linewidth mm},blue-medium] (ELECmid.center) 
+            -- ++(\ELECwidth,0);
+
+        % CIRCLE & CABLE
+        \node[circle,draw,line width={\linewidth mm},blue-dark,anchor=east,inner sep=8pt] (CIRC) at (D) {};
+        \draw[line width={\linewidth mm},blue-dark] ([xshift=1mm]CIRC.west) -- ++(-\cablelength,0);
+
+        % LLN
+        \path (D) -- (ELECmid) node[midway] {\fontsize{40}{48}\selectfont\color{blue-light}\textbf{LLN}}; 
+
+    \end{tikzpicture}
+\end{visual}
 \end{document}
